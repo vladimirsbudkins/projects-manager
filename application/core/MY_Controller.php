@@ -12,6 +12,9 @@ class Base_Controller extends CI_Controller {
     public function __construct() {
 	parent::__construct();
 	$this->main_content = $this->set_main_content();
+	$css = ['css/bootstrap.min.css','css/font-awesome.min.css','http://fonts.googleapis.com/css?family=Open+Sans:400,300','css/ace.min.css','css/ace-rtl.min.css'];
+	$js = [];
+	$this->assets->add(['css'=>$css,'js'=>$js]);
     }
 
     public function set_main_content() {
