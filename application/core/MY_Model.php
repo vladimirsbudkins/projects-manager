@@ -1822,4 +1822,14 @@ class MY_Model extends CI_Model
         $this->db->set($key, $value, $escape);
         return $this;
     }
+    
+    public function get_custom_validation_rules(array $fields) {
+	$rules = [];
+        foreach ($this->validation_rules as $value) {
+            if (in_array($value['field'], $fields)) {
+                $rules[] = $value;
+            }
+        }
+        return $rules;
+    }
 }

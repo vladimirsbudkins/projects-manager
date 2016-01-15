@@ -7,40 +7,37 @@
 	    </h4>
 
 	    <div class="space-6"></div>
-
-	    <form>
+		<?php echo form_open();?>
 		<fieldset>
 		    <label class="block clearfix">
 			<span class="block input-icon input-icon-right">
-			    <input type="text" class="form-control" placeholder="Username" />
+			    <?php echo form_input(array('name' => "login_email", 'class' => 'form-control', 'value' => set_value("login_email"),'placeholder'=>'Email')); ?>
 			    <i class="icon-user"></i>
 			</span>
 		    </label>
-
+		    <?php echo form_error('login_email'); ?>
 		    <label class="block clearfix">
 			<span class="block input-icon input-icon-right">
-			    <input type="password" class="form-control" placeholder="Password" />
+			    <?php echo form_input(array('name' => "password", 'class' => 'form-control', 'value' => set_value("password"),'placeholder'=>'Password','type'=>'password')); ?>
 			    <i class="icon-lock"></i>
 			</span>
 		    </label>
-
+		    <?php echo form_error('password'); ?>
 		    <div class="space"></div>
 
 		    <div class="clearfix">
 			<label class="inline">
-			    <input type="checkbox" class="ace" />
-			    <span class="lbl"> Remember Me</span>
+			    <?php echo form_checkbox('remember',1,set_checkbox('remember',1),'id="remember" class="ace"');?>
+			    <label class="lbl" for="remember" style="cursor: pointer"> Remember Me</label>
 			</label>
-
-			<button type="button" class="width-35 pull-right btn btn-sm btn-primary">
-			    <i class="icon-key"></i>
-			    Login
+			<button type="submit" class="width-35 pull-right btn btn-sm btn-primary">
+			    <i class="icon-key"></i> Login
 			</button>
 		    </div>
 
 		    <div class="space-4"></div>
 		</fieldset>
-	    </form>
+	    <?php echo form_close();?>
 	</div>
 
 	<div class="toolbar clearfix">
