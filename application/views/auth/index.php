@@ -34,7 +34,9 @@
 			    <i class="icon-key"></i> Login
 			</button>
 		    </div>
-		    <p class="text-danger">wdwq</p>
+		    <?php if($auth_error):?>
+			<p class="text-danger"><?php echo $auth_error;?></p>
+		    <?php endif;?>
 		    <div class="space-4"></div>
 		</fieldset>
 	    <?php echo form_close();?>

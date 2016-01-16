@@ -8,6 +8,7 @@ class Auth extends Base_Controller {
     public function __construct() {
 	parent::__construct();
 	$this->tpl = 'auth';
+	$this->data['auth_error'] = $this->session->flashdata('auth_error');
     }
     
     public function index() {
@@ -18,7 +19,8 @@ class Auth extends Base_Controller {
 	    if ($this->form_validation->run()) {
 		$auth_data = $this->auth_model->check_auth_data($post['login_email'],$post['password']);
 		if($auth_data['status']){
-		    var_dump($auth_data);
+		    $this->auth_model->login($auth_data['user_data'],isset($post['remember'])?true:false);
+		    redirect('/');
 		}else{
 		    $this->session->set_flashdata('auth_error', $auth_data['msg']);
 		    redirect(current_url());
@@ -38,6 +40,7 @@ class Auth extends Base_Controller {
     }
     
     public function logout() {
+	$this->auth_model->logout();
 	redirect('auth');
     }
 
