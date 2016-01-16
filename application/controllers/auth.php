@@ -17,7 +17,12 @@ class Auth extends Base_Controller {
 	    $this->form_validation->set_rules($rules);
 	    if ($this->form_validation->run()) {
 		$auth_data = $this->auth_model->check_auth_data($post['login_email'],$post['password']);
-		var_dump($auth_data);
+		if($auth_data['status']){
+		    var_dump($auth_data);
+		}else{
+		    $this->session->set_flashdata('auth_error', $auth_data['msg']);
+		    redirect(current_url());
+		}
 	    }
 	}
 	//$this->assets->add(['js'=>['js/auth_index.js']]);

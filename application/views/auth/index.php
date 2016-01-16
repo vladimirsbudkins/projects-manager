@@ -34,7 +34,7 @@
 			    <i class="icon-key"></i> Login
 			</button>
 		    </div>
-
+		    <p class="text-danger">wdwq</p>
 		    <div class="space-4"></div>
 		</fieldset>
 	    <?php echo form_close();?>
