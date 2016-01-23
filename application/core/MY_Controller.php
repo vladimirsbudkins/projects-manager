@@ -11,7 +11,6 @@ class Base_Controller extends CI_Controller {
 
     public function __construct() {
 	parent::__construct();
-	$this->auth_model->is_remembered();
 	if($this->router->class != 'auth' && !$this->auth_model->is_logged()){
 	    redirect('auth'); 
 	}
