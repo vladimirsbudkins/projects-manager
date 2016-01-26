@@ -11,6 +11,9 @@
 	    <div class="page-content">
 		<div class="row">
 		    <div class="col-xs-12">
+			<?php if(file_exists(APPPATH.'views/'.$this->router->class.'/subnav.php')):?>
+			    <?php $this->load->view($this->router->class.'/subnav'); ?>
+			<?php endif;?>
 			<?php $this->load->view($this->main_content); ?>
 		    </div>
 		</div>

@@ -19,6 +19,7 @@ class Base_Controller extends CI_Controller {
 	$js = ['http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js','js/bootstrap.min.js','js/ace-elements.min.js','js/ace.min.js'];
 	$this->assets->add(['css'=>$css,'js'=>$js]);
 	$this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
+	$this->breadcrumbs->push('Home', '/');
     }
 
     public function set_main_content() {
