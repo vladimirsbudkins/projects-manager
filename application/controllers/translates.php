@@ -7,7 +7,7 @@ class Translates extends Base_Controller {
 
     public function __construct() {
 	parent::__construct();
-	$this->breadcrumbs->push('Translates', 'translates');
+	$this->breadcrumbs->push('<i class="icon-text-height"></i> Translates', 'translates');
     }
 
     public function index() {

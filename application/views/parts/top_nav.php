@@ -1,6 +1,6 @@
-<div class="navbar navbar-default" id="navbar">
+<div class="navbar navbar-default navbar-fixed-top" id="navbar">
 
-    <div class="navbar-container" id="navbar-container">
+    <div class="navbar-container container" id="navbar-container">
 	<div class="navbar-header pull-left">
 	    <?php echo anchor('/','<small><i class="icon-leaf"></i> Projects manager</small>','class="navbar-brand"');?>
 	</div>

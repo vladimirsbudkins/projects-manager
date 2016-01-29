@@ -1,4 +1,4 @@
-<div class="breadcrumbs" id="breadcrumbs">
+<div class="breadcrumbs breadcrumbs-fixed" id="breadcrumbs">
     <?php echo $this->breadcrumbs->show();?>
     <div class="nav-search" id="nav-search">
 	<form class="form-search">

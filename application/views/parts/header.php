@@ -9,4 +9,4 @@
 		<?php $this->assets->css(); ?>
 	</head>
 	
-	<body class="<?php echo $this->router->class == 'auth'?'login-layout':null;?>">
+	<body class="<?php echo $this->router->class == 'auth'?'login-layout':'navbar-fixed';?>">

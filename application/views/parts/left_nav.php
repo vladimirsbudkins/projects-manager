@@ -1,4 +1,4 @@
-<div class="sidebar" id="sidebar">
+<div class="sidebar sidebar-fixed" id="sidebar">
 
     <div class="sidebar-shortcuts" id="sidebar-shortcuts">
 	<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">

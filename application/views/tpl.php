@@ -1,6 +1,6 @@
 <?php $this->load->view('parts/header'); ?>
 <?php $this->load->view('parts/top_nav'); ?>
-<div class="main-container" id="main-container">
+<div class="main-container container" id="main-container">
     <div class="main-container-inner">
 	<a class="menu-toggler" id="menu-toggler" href="#">
 	    <span class="menu-text"></span>
@@ -11,9 +11,6 @@
 	    <div class="page-content">
 		<div class="row">
 		    <div class="col-xs-12">
-			<?php if(file_exists(APPPATH.'views/'.$this->router->class.'/subnav.php')):?>
-			    <?php $this->load->view($this->router->class.'/subnav'); ?>
-			<?php endif;?>
 			<?php $this->load->view($this->main_content); ?>
 		    </div>
 		</div>
