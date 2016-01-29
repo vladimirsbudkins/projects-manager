@@ -15,7 +15,7 @@ class Base_Controller extends CI_Controller {
 	    redirect('auth'); 
 	}
 	$this->main_content = $this->set_main_content();
-	$css = ['css/bootstrap.min.css','css/font-awesome.min.css','http://fonts.googleapis.com/css?family=Open+Sans:400,300','css/ace.min.css','css/ace-rtl.min.css','css/customa-ace.css'];
+	$css = ['css/bootstrap.min.css','css/font-awesome.min.css','http://fonts.googleapis.com/css?family=Open+Sans:400,300','css/ace.min.css','css/ace-rtl.min.css','css/custom-ace.css'];
 	$js = ['http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js','js/bootstrap.min.js','js/ace-elements.min.js','js/ace.min.js'];
 	$this->assets->add(['css'=>$css,'js'=>$js]);
 	$this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');

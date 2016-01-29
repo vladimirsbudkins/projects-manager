@@ -39,64 +39,8 @@ CREATE TABLE `ci_sessions` (
 
 LOCK TABLES `ci_sessions` WRITE;
 /*!40000 ALTER TABLE `ci_sessions` DISABLE KEYS */;
-INSERT INTO `ci_sessions` VALUES ('1e633b82d9aad5f3b6e00f60d80ab6da','127.0.0.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/47.0.2526.111 Safari/537.36',1452887786,'');
+INSERT INTO `ci_sessions` VALUES ('1585d0a4df172d7829e290f24d5be1f8','127.0.0.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36',1454100215,'a:2:{s:9:\"user_data\";s:0:\"\";s:12:\"pm_user_data\";a:8:{s:2:\"id\";s:1:\"1\";s:5:\"email\";s:15:\"admin@admin.com\";s:4:\"name\";s:5:\"admin\";s:7:\"surmane\";s:5:\"admin\";s:5:\"photo\";s:24:\"uploads/avatars/user.jpg\";s:5:\"phone\";N;s:4:\"lang\";s:2:\"ru\";s:6:\"groups\";a:2:{i:0;s:5:\"admin\";i:1;s:4:\"user\";}}}'),('c81d310cca5798e92055f837afe7db2f','127.0.0.1','Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.97 Safari/537.36',1454098908,'');
 /*!40000 ALTER TABLE `ci_sessions` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `comments`
---
-
-DROP TABLE IF EXISTS `comments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comments` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `tasks_id` int(10) unsigned NOT NULL,
-  `users_id` int(10) unsigned NOT NULL,
-  `comment` text,
-  PRIMARY KEY (`id`),
-  KEY `fk_c_tasks_id_idx` (`tasks_id`),
-  KEY `fk_c_users_id_idx` (`users_id`),
-  CONSTRAINT `fk_c_tasks_id` FOREIGN KEY (`tasks_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_c_users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comments`
---
-
-LOCK TABLES `comments` WRITE;
-/*!40000 ALTER TABLE `comments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comments` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `comments_attachments`
---
-
-DROP TABLE IF EXISTS `comments_attachments`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `comments_attachments` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `comments_id` int(10) unsigned NOT NULL,
-  `file` varchar(255) NOT NULL,
-  `file_type` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_ca_comments_id_idx` (`comments_id`),
-  CONSTRAINT `fk_ca_comments_id` FOREIGN KEY (`comments_id`) REFERENCES `comments` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `comments_attachments`
---
-
-LOCK TABLES `comments_attachments` WRITE;
-/*!40000 ALTER TABLE `comments_attachments` DISABLE KEYS */;
-/*!40000 ALTER TABLE `comments_attachments` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -125,141 +69,6 @@ INSERT INTO `groups` VALUES (1,'admin'),(2,'user');
 UNLOCK TABLES;
 
 --
--- Table structure for table `projects`
---
-
-DROP TABLE IF EXISTS `projects`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `projects` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(100) NOT NULL,
-  `img` varchar(255) DEFAULT NULL,
-  `color` varchar(8) DEFAULT NULL,
-  `created` datetime NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `projects`
---
-
-LOCK TABLES `projects` WRITE;
-/*!40000 ALTER TABLE `projects` DISABLE KEYS */;
-/*!40000 ALTER TABLE `projects` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `projects_categories`
---
-
-DROP TABLE IF EXISTS `projects_categories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `projects_categories` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `projects_id` int(10) unsigned NOT NULL,
-  `order` int(10) unsigned NOT NULL DEFAULT '100',
-  `title` varchar(100) NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_pc_projects_id_idx` (`projects_id`),
-  CONSTRAINT `fk_pc_projects_id` FOREIGN KEY (`projects_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `projects_categories`
---
-
-LOCK TABLES `projects_categories` WRITE;
-/*!40000 ALTER TABLE `projects_categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `projects_categories` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `settings`
---
-
-DROP TABLE IF EXISTS `settings`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `settings` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `key` varchar(100) NOT NULL,
-  `value` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `key_UNIQUE` (`key`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `settings`
---
-
-LOCK TABLES `settings` WRITE;
-/*!40000 ALTER TABLE `settings` DISABLE KEYS */;
-/*!40000 ALTER TABLE `settings` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tasks`
---
-
-DROP TABLE IF EXISTS `tasks`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tasks` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `users_id` int(10) unsigned NOT NULL,
-  `title` varchar(255) NOT NULL,
-  `created` datetime NOT NULL,
-  `created_by` int(10) unsigned NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '0',
-  `order` int(11) NOT NULL DEFAULT '500',
-  `priority` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`id`),
-  KEY `fk_t_users_id_idx` (`users_id`),
-  CONSTRAINT `fk_t_users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tasks`
---
-
-LOCK TABLES `tasks` WRITE;
-/*!40000 ALTER TABLE `tasks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tasks` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `tasks_projects_categories`
---
-
-DROP TABLE IF EXISTS `tasks_projects_categories`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `tasks_projects_categories` (
-  `projects_categories_id` int(10) unsigned NOT NULL,
-  `tasks_id` int(10) unsigned NOT NULL,
-  KEY `fk_tpc_projects_categories_id_idx` (`projects_categories_id`),
-  KEY `fk_tpc_tasks_id_idx` (`tasks_id`),
-  CONSTRAINT `fk_tpc_projects_categories_id` FOREIGN KEY (`projects_categories_id`) REFERENCES `projects_categories` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tpc_tasks_id` FOREIGN KEY (`tasks_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tasks_projects_categories`
---
-
-LOCK TABLES `tasks_projects_categories` WRITE;
-/*!40000 ALTER TABLE `tasks_projects_categories` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tasks_projects_categories` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `translates`
 --
 
@@ -268,6 +77,7 @@ DROP TABLE IF EXISTS `translates`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `translates` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `set` varchar(100) NOT NULL,
   `key` varchar(100) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `key_UNIQUE` (`key`)
@@ -341,7 +151,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'admin@admin.com','$2y$10$S2MOy7VkUx8xTe05tB0E1OBb0MS46hzLtgcxnEdAYgCsw3F2babCu','admin','admin','uploads/avatars/user.jpg',NULL,NULL,'2016-01-15 00:00:00',1,0,NULL,'ru');
+INSERT INTO `users` VALUES (1,'admin@admin.com','$2y$10$S2MOy7VkUx8xTe05tB0E1OBb0MS46hzLtgcxnEdAYgCsw3F2babCu','admin','admin','uploads/avatars/user.jpg','56a3f94dc0e41',NULL,'2016-01-15 00:00:00',1,0,NULL,'ru');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -357,8 +167,8 @@ CREATE TABLE `users_groups` (
   `groups_id` int(10) unsigned NOT NULL,
   KEY `fk_ug_users_id_idx` (`users_id`),
   KEY `fk_ug_groups_id_idx` (`groups_id`),
-  CONSTRAINT `fk_ug_users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_ug_groups_id` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
+  CONSTRAINT `fk_ug_groups_id` FOREIGN KEY (`groups_id`) REFERENCES `groups` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `fk_ug_users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -371,60 +181,6 @@ LOCK TABLES `users_groups` WRITE;
 INSERT INTO `users_groups` VALUES (1,1),(1,2);
 /*!40000 ALTER TABLE `users_groups` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `users_projects`
---
-
-DROP TABLE IF EXISTS `users_projects`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users_projects` (
-  `users_id` int(10) unsigned NOT NULL,
-  `projects_id` int(10) unsigned NOT NULL,
-  `order` int(11) NOT NULL DEFAULT '500',
-  `favorite` tinyint(1) NOT NULL DEFAULT '0',
-  KEY `fk_up_users_id_idx` (`users_id`),
-  KEY `fk_up_projects_id_idx` (`projects_id`),
-  CONSTRAINT `fk_up_users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `fk_up_projects_id` FOREIGN KEY (`projects_id`) REFERENCES `projects` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users_projects`
---
-
-LOCK TABLES `users_projects` WRITE;
-/*!40000 ALTER TABLE `users_projects` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users_projects` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `users_tasks`
---
-
-DROP TABLE IF EXISTS `users_tasks`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `users_tasks` (
-  `users_id` int(10) unsigned NOT NULL,
-  `tasks_id` int(10) unsigned NOT NULL,
-  KEY `fk_ut_users_id_idx` (`users_id`),
-  KEY `tasks_id_idx` (`tasks_id`),
-  CONSTRAINT `fk_ut_users_id` FOREIGN KEY (`users_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION,
-  CONSTRAINT `tasks_id` FOREIGN KEY (`tasks_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `users_tasks`
---
-
-LOCK TABLES `users_tasks` WRITE;
-/*!40000 ALTER TABLE `users_tasks` DISABLE KEYS */;
-/*!40000 ALTER TABLE `users_tasks` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -435,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-01-15 22:01:09
+-- Dump completed on 2016-01-29 22:47:21
