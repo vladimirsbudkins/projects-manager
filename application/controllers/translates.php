@@ -14,4 +14,9 @@ class Translates extends Base_Controller {
 	$this->load->view($this->tpl, $this->data);
     }
 
+    public function create() {
+	$this->breadcrumbs->push('Create', current_url());
+	$this->load->view($this->tpl, $this->data);
+    }
+
 }

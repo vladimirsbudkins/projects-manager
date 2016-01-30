@@ -1,3 +1,8 @@
 .page-content {
     padding-top:50px;
 }
+
+.control-label{
+    font-weight: bold;
+    cursor: pointer;
+}

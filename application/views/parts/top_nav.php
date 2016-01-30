@@ -219,7 +219,7 @@
 
 		<li class="light-blue">
 		    <a data-toggle="dropdown" href="#" class="dropdown-toggle">
-			<img class="nav-user-photo" src="assets/img/avatars/user.jpg" alt="Jason's Photo" />
+			<?php echo img(['src'=>'assets/img/avatars/user.jpg','class'=>'nav-user-photo']);?>
 			<span class="user-info">
 			    <small>Welcome,</small>
 			    Jason
