@@ -4,13 +4,13 @@
 
 class MY_Lang extends CI_Lang {
 
-    // active languages
+    //active languages keys
     public $languages = array();
-    //all active languages data
+    //active languages full data
     public $languages_data = array();
-    //will use for admin
+    //all languages keys
     public $all_languages = array();
-    //will use for admin
+    //all languages full data
     public $all_languages_data = array();
     //default site language
     public $def_lang;
@@ -18,13 +18,11 @@ class MY_Lang extends CI_Lang {
 
     public function __construct() {
 	parent::__construct();
-	$this->init();
     }
 
     public function init() {
-	require_once( BASEPATH . 'database/DB' . EXT );
-	$db = & DB();
-	$result = $db->get('languages')->result();
+	$this->ci = & get_instance();
+	$result = $this->ci->languages_model->find_all();
 	if ($result) {
 	    foreach ($result as $key => $value) {
 		if ($value->status) {

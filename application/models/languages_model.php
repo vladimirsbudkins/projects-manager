@@ -12,9 +12,20 @@ class Languages_model extends MY_Model {
     protected $set_created = true;
     protected $set_modified = false;
     protected $validation_rules = [];
+    public $cache_file = 'languages';
 
     public function __construct() {
 	
+    }
+
+    public function find_all() {
+	$cache = $this->cache->file->get($this->cache_file);
+	if (!$cache) {
+	    $result = parent::find_all();
+	    $this->cache->file->save($this->cache_file, $result, 1000000);
+	    return $result;
+	}
+	return $cache;
     }
 
 }
