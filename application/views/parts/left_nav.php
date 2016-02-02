@@ -39,6 +39,10 @@
 	<li <?php echo $li_active;?>>
 	     <?php echo anchor('translates', '<i class="icon-text-height"></i> <span class="menu-text"> Translates </span>'); ?>
 	</li>
+	<?php $li_active = $this->router->class == 'languages' ? 'class="active"' : null; ?>
+	<li <?php echo $li_active;?>>
+	     <?php echo anchor('languages', '<i class="icon-flag"></i> <span class="menu-text"> Languages </span>'); ?>
+	</li>
     </ul>
 
     <div class="sidebar-collapse" id="sidebar-collapse">
