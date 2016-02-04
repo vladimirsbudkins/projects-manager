@@ -1,34 +1,5 @@
 <div class="sidebar sidebar-fixed" id="sidebar">
-
-    <div class="sidebar-shortcuts" id="sidebar-shortcuts">
-	<div class="sidebar-shortcuts-large" id="sidebar-shortcuts-large">
-	    <button class="btn btn-success">
-		<i class="icon-plus"></i>
-	    </button>
-
-	    <button class="btn btn-info">
-		<i class="icon-cogs"></i>
-	    </button>
-
-	    <!--button class="btn btn-warning">
-		<i class="icon-group"></i>
-	    </button>
-
-	    <button class="btn btn-danger">
-		<i class="icon-cogs"></i>
-	    </button-->
-	</div>
-
-	<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
-	    <span class="btn btn-success"></span>
-
-	    <span class="btn btn-info"></span>
-
-	    <span class="btn btn-warning"></span>
-
-	    <span class="btn btn-danger"></span>
-	</div>
-    </div>
+    <?php echo $navigation_panel;?>
 
     <ul class="nav nav-list">
 	<?php $li_active = $this->router->class == 'dashboard' ? 'class="active"' : null; ?>

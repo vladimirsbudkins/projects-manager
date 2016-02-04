@@ -13,6 +13,7 @@ class Base_Controller extends CI_Controller {
 	parent::__construct();
 	$this->load->driver('cache');
 	$this->lang->init();
+	$this->load->model(['auth_model']);
 	if($this->router->class != 'auth' && !$this->auth_model->is_logged()){
 	    redirect('auth'); 
 	}
@@ -22,6 +23,9 @@ class Base_Controller extends CI_Controller {
 	$this->assets->add(['css'=>$css,'js'=>$js]);
 	$this->form_validation->set_error_delimiters('<p class="text-danger">', '</p>');
 	$this->breadcrumbs->push('<i class="icon-dashboard"></i>  Home', '/');
+	$this->data['page_title'] = 'Project Manager';
+	$this->data['navigation_panel'] = $this->actions->navigation_panel();
+	$this->data['search_panel'] = $this->actions->search_panel();
     }
 
     public function set_main_content() {
@@ -33,6 +37,8 @@ class Base_Controller extends CI_Controller {
     public function set_404($load_view = false) {
         $this->output->set_status_header('404');
         $this->main_content = 'error/error_404';
+	$this->breadcrumbs->push('<i class="icon-sitemap"></i>  404 Page Not Found', current_url());
+	$this->data['page_title'] = '404 Page Not Found';
         if ($load_view){
 	    $this->load->view($this->tpl, $this->data);
 	}
